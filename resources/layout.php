@@ -1,11 +1,14 @@
 <?php
-  require_once 'lib/pageTemplate.php';
+  include_once "../config/config.php";
 
   include_once "utils.php";
 ?>
 
 <!doctype html>
 <html lang="en">
+  <script>
+    console.log("test")
+  </script>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">

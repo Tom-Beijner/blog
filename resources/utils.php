@@ -1,6 +1,4 @@
-<?php
-  include_once "config.php";
-  
+<?php  
   function pure_input($data) {
     $data = trim($data);
     $data = stripslashes($data);

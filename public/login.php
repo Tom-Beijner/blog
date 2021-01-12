@@ -13,8 +13,7 @@
   <body>
     <div class="container">
       <h1 class="text-center">Login</h1>
-      <?php 
-        include 'dbconfig.php';
+      <?php
         include "utils.php";
 
         session_start();
@@ -60,7 +59,7 @@
           <label class="control-label" for="password">Password</label>
           <input type="password" class="form-control" id="password" name="password" />
         </div>
-        <input type="submit" class="btn btn-info" value="Logga in" name="submit" /> 
+        <input type="submit" class="btn btn-info" value="Login" name="submit" /> 
         <a href="register.php">Need an account? Register here.</a>
       </form>
     </div>

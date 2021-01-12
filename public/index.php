@@ -1,13 +1,11 @@
 <?php
-  require_once 'layout.php';
-
-  include "dbconfig.php";
+  require_once '../resources/pageTemplate.php';
 
   if (!isset($TPL)) {
     $TPL = new PageTemplate();
     $TPL->PageTitle = "Home";
     $TPL->ContentBody = __FILE__;
-    include "layout.php";
+    require "../resources/layout.php";
     exit;
   }
 ?>
@@ -28,7 +26,7 @@
   } 
 
   try {
-    $query = "SELECT * FROM tblbil";
+    $query = "SELECT * FROM articles";
     $bilar = $connect -> query($query);
     ?>
     <div class="container">
