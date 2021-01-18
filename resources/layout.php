@@ -1,14 +1,22 @@
 <?php
   include_once "../config/config.php";
 
+  // Database connection
+  $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+  $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
   include_once "utils.php";
+
+  function page_title($name) {
+    $name = $name. " - ";
+    return $name;
+  }
+
+  session_start();
 ?>
 
 <!doctype html>
 <html lang="en">
-  <script>
-    console.log("test")
-  </script>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -17,11 +25,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <title><?php if(isset($TPL->PageTitle)) echo page_title($TPL->PageTitle); ?></title>
+    <title><?php if(isset($TPL->PageTitle)) echo page_title($TPL->PageTitle). utf8_encode($blog_name); ?></title>
 
     <?php if(isset($TPL->ContentHead)) include $TPL->ContentHead; ?>
   </head>
   <body>
+    <?php include_once "navbar.php" ?>
+
     <div class="container">
       <?php if(isset($TPL->ContentBody)) include $TPL->ContentBody; ?>
     </div>

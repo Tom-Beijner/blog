@@ -1,6 +1,16 @@
 RewriteEngine On
 RewriteBase /www/blog/
 
+ErrorDocument 404 /www/blog/404.php
+
+# Remove .php extension from url
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^ %{REQUEST_URI}.php [NC,L]
+
+# Make public folder only accessible
 RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
 RewriteRule ^ %1 [L,NE,R=302]
 

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  
   if (isset($_SESSION["username"])) {
     try {
         session_destroy();

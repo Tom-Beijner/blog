@@ -11,56 +11,46 @@
 ?>
 
 <h1>Blog</h1>
+
+<!-- <a href="/articles/<?= $article["id"] ?>">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["name"]) ?>">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><?= utf8_encode($article["name"]) ?></h5>
+          <p class="card-text"><?= utf8_encode($article["summary"]) ?></p>
+          <p class="card-text"><small class="text-muted"><? if (!isset($article["updatedAt"])) echo time_elapsed_string(utf8_encode($article["createdAt"])) else echo time_elapsed_string(utf8_encode($article["updatedAt"])) ?></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</a> -->
+
 <?php 
-  session_start();
-
-  if (isset($_SESSION["username"])) {
-    echo $_SESSION["username"]; 
-    ?>
-      <a href="./logout.php">Logout</a>
-    <?php 
-  } else { 
-    ?>
-      <a href="./login.php">Login</a>
-    <?php 
-  } 
-
   try {
     $query = "SELECT * FROM articles";
-    $bilar = $connect -> query($query);
+    $articles = $connect -> query($query);
     ?>
     <div class="container">
-      <h1 class="text-center">Alla bilar</h1>
-      <div style="float: left;">
-        <a href="./uppdateraBil.html">Ändra</a>
-        <br>
-        <a href="./infogaBil.html">Lägga till</a>
+      <div class="row">
+        <?php foreach($articles as $article): ?>
+          <div class="col-sm-4">
+            <a href="/articles/<?= $article["id"] ?>">
+              <div class="card mb-3">
+                <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["name"]) ?>">
+                <div class="card-body">
+                  <h5 class="card-title"><?= utf8_encode($article["name"]) ?></h5>
+                  <p class="card-text"><?= utf8_encode($article["summary"]) ?></p>
+                  <p class="card-text"><small class="text-muted"><?php if (!isset($article["updatedAt"])) { echo "Posted ". time_elapsed_string(utf8_encode($article["createdAt"])); } else { echo "Updated ". time_elapsed_string(utf8_encode($article["updatedAt"])); } ?></small></p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php endforeach; ?>
       </div>
-      <div style="float: right;">
-        <?php echo $_SESSION["username"]; ?>
-        <br>
-        <a href="./logout.php">Logga ut</a>
-      </div>
-      <table class="table table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th>Reg. Nr</th>
-            <th>Märke</th>
-            <th>Årsmodell</th>
-            <th>Timpris</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($bilar as $bil): ?>
-            <tr>
-              <td><?= utf8_encode($bil["regnr"]) ?></td>
-              <td><?= utf8_encode($bil["marke"]) ?></td>
-              <td><?= utf8_encode($bil["arsmodell"]) ?></td>
-              <td><?= utf8_encode($bil["timpris"]) ?></td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
     </div>
     <?php
   } catch(PDOException $error) {
