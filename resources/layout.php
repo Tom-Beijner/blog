@@ -25,6 +25,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="<?= utf8_encode($base_url) ?>/assets/css/main.css" crossorigin="anonymous">
+
     <title><?php if(isset($TPL->PageTitle)) echo page_title($TPL->PageTitle). utf8_encode($blog_name); ?></title>
 
     <?php if(isset($TPL->ContentHead)) include $TPL->ContentHead; ?>

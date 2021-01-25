@@ -10,24 +10,7 @@
   }
 ?>
 
-<h1>Blog</h1>
-
-<!-- <a href="/articles/<?= $article["id"] ?>">
-  <div class="card mb-3" style="max-width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["name"]) ?>">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"><?= utf8_encode($article["name"]) ?></h5>
-          <p class="card-text"><?= utf8_encode($article["summary"]) ?></p>
-          <p class="card-text"><small class="text-muted"><? if (!isset($article["updatedAt"])) echo time_elapsed_string(utf8_encode($article["createdAt"])) else echo time_elapsed_string(utf8_encode($article["updatedAt"])) ?></small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</a> -->
+<!-- Dynamic page https://stackoverflow.com/a/7975282 -->
 
 <?php 
   try {
@@ -38,7 +21,7 @@
       <div class="row">
         <?php foreach($articles as $article): ?>
           <div class="col-sm-4">
-            <a href="/articles/<?= $article["id"] ?>">
+            <a href="<?= utf8_encode($base_url) ?>/posts?id=<?= $article["id"] ?>">
               <div class="card mb-3">
                 <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["name"]) ?>">
                 <div class="card-body">
