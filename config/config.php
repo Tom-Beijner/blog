@@ -7,4 +7,8 @@
   $db_name = "blogdb";
   $db_user = "root";
   $db_pass = "15935742680";
-?>
+
+  // Website environment
+  // For production use "production"
+  // For development use "development"
+  $environment = "development";
