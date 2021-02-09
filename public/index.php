@@ -22,9 +22,9 @@
           <div class="col-sm-4">
             <a href="<?= utf8_encode($base_url) ?>/posts?id=<?= $article["id"] ?>">
               <div class="card mb-3">
-                <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["name"]) ?>">
+                <img src="<?= utf8_encode($article["image"]) ?>" class="card-img" alt="<?= utf8_encode($article["title"]) ?>">
                 <div class="card-body">
-                  <h5 class="card-title"><?= utf8_encode($article["name"]) ?></h5>
+                  <h5 class="card-title"><?= utf8_encode($article["title"]) ?></h5>
                   <p class="card-text"><?= utf8_encode($article["summary"]) ?></p>
                   <p class="card-text"><small class="text-muted"><?php if (!isset($article["updatedAt"])) {
           echo "Posted ". time_elapsed_string(utf8_encode($article["createdAt"]));

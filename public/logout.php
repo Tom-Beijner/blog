@@ -2,12 +2,12 @@
   session_start();
   
   if (isset($_SESSION["username"])) {
-    try {
-        session_destroy();
-    } catch(PDOException $error) {
-      $error -> getMessage();
-    }
-  } 
+      try {
+          session_destroy();
+      } catch (PDOException $error) {
+          $error -> getMessage();
+      }
+  }
 
-  header("Location: index.php?redirect=true");
-?>
+  // Fix so this is using the website base url
+  header("Location: index.php/?redirect=true");

@@ -25,6 +25,8 @@
             <?= utf8_encode($_SESSION["username"]) ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="<?= utf8_encode($base_url) ?>/create">Create Article</a>
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?= utf8_encode($base_url) ?>/logout">Logout</a>
           </div>
         </div>
