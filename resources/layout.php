@@ -43,19 +43,19 @@
             username varchar(255) NOT NULL,
             password varchar(255) NOT NULL,
             createdAt timestamp DEFAULT CURRENT_TIMESTAMP,
-            updatedAt timestamp ON UPDATE CURRENT_TIMESTAMP,
+            updatedAt timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
           )");
           $connect -> query("CREATE TABLE articles(
             id int(11) NOT NULL AUTO_INCREMENT,
-            userId int(11) NOT NULL INDEX, 
+            userId int(11), 
             name varchar(20) NOT NULL,
             username varchar(255) NOT NULL,
             summary varchar(255) NOT NULL,
             description text NOT NULL,
             image varchar(255) NOT NULL,
             createdAt timestamp DEFAULT CURRENT_TIMESTAMP,
-            updatedAt timestamp ON UPDATE CURRENT_TIMESTAMP,
+            updatedAt timestamp NULL ON UPDATE CURRENT_TIMESTAMP,
             PRIMARY KEY (id),
             FOREIGN KEY (userId) REFERENCES users (id) 
           )");
