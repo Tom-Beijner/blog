@@ -18,8 +18,8 @@
         </li>
       </ul>
       <?php
-        if (isset($_SESSION["username"])) { 
-      ?>
+        if (isset($_SESSION["username"])) {
+            ?>
         <div class="user nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?= utf8_encode($_SESSION["username"]) ?>
@@ -28,7 +28,9 @@
             <a class="dropdown-item" href="<?= utf8_encode($base_url) ?>/logout">Logout</a>
           </div>
         </div>
-      <?php } else { ?>
+      <?php
+        } else { ?>
+        <a class="btn btn-outline-primary mr-sm-2" href="<?= utf8_encode($base_url) ?>/register" role="button">Register</a>
         <a class="btn btn-primary" href="<?= utf8_encode($base_url) ?>/login" role="button">Login</a>
       <?php } ?>
     </div>
