@@ -41,6 +41,7 @@
 
           if (!empty($user) && password_verify($password, $user["password"])) {
               session_regenerate_id();
+              $_SESSION["userId"] = $user["id"];
               $_SESSION["username"] = $_POST["username"];
               header("Location: index?success=true");
           } else {
