@@ -42,8 +42,8 @@
           }
 
           if (empty($errors)) {
-              $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-              $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              // $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+              // $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
               $query = "INSERT INTO users (name, username, password) VALUES('$name', '$username', '$hashed_password')";
 

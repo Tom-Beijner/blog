@@ -32,8 +32,8 @@
           $passform_form = pure_input($_POST["password"]);
           $password = hash("sha512", $passform_form);
 
-          $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-          $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          // $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+          // $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
           $query = "SELECT * FROM users WHERE username='$username'";
 
