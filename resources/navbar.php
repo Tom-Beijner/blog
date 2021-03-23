@@ -11,9 +11,6 @@
           <a class="nav-link" href="<?= utf8_encode($base_url) ?>/">Home</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<?= utf8_encode($base_url) ?>/articles">Articles</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="<?= utf8_encode($base_url) ?>/authors">Authors</a>
         </li>
       </ul>

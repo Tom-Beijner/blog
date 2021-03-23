@@ -67,7 +67,7 @@
         <?php
           }
       } catch (PDOException $error) {
-          $error -> getMessage();
+          echo $error -> getMessage();
       }
   }
 ?>

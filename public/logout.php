@@ -5,7 +5,7 @@
       try {
           session_destroy();
       } catch (PDOException $error) {
-          $error -> getMessage();
+          echo $error -> getMessage();
       }
   }
 

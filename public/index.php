@@ -14,7 +14,7 @@
 
 <?php
   try {
-      $query = "SELECT * FROM articles";
+      $query = "SELECT * FROM articles ORDER BY updatedAt desc, createdAt desc";
       $articles = $connect -> query($query); ?>
     <div class="container">
       <div class="row">

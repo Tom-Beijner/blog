@@ -43,25 +43,37 @@
           if (strlen($summary) > 255) {
               $errors["summary"] = "Summary too long, (Max 255 chars)";
           }
+          if (strlen($description) > 5000) {
+              $errors["description"] = "Description too long, (Max 5000 chars)";
+          }
           if (strlen($image) > 255) {
               $errors["image"] = "Image URL too long, (Max 255 chars)";
           }
 
           if (empty($errors)) {
-              // $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
-              // $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              try {
+                  // $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
+                  // $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                  $userId = $_SESSION["userId"];
+                  $query = "INSERT INTO articles (userId, title, summary, description, image) VALUES('$userId', '$title', '$summary', '$description', '$image')";
+                  $execute = $connect -> query($query);
+                  $postId = $connect -> lastInsertId();
 
-              $query = "INSERT INTO articles (title, summary, description, image) VALUES('$title', '$summary', '$description', '$image')";
+                  if (!empty($execute)) {
+                      ?>
+      
 
-              if ($connect -> query($query)) {
-                  echo var_dump($connect); ?>
-                <div class="alert alert-success" role="alert">
-                  The article has been created <a href="posts?id=">click here</a> to view it
-                </div>
-              <?php
-              } else {
-                  echo "Error". die(mysqli_error($connect -> query($query)));
+                    <div class="alert alert-success" role="alert">
+                      The article has been created <a href='<?php echo "posts?id={$post}" ?>'>click here</a> to view it
+                    </div>
+                  <?php
+                  }
+              } catch (PDOException $error) {
+                  echo $error -> getMessage();
               }
+              // else {
+              //     echo "Error". die(mysqli_error($connect -> query($query)));
+              // }
           } else {
               ?>
           <div class="alert alert-danger" role="alert">
@@ -77,7 +89,7 @@
         <?php
           }
       } catch (PDOException $error) {
-          $error -> getMessage();
+          echo $error -> getMessage();
       }
   }
 ?>

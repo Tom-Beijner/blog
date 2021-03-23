@@ -17,7 +17,7 @@ try {
     $q -> bindValue(':id', $_GET['id']);
     $q -> execute();
     $article = $q -> fetch();
-    
+
     if (!$article) {
         require "./404.php";
     } else { ?>
@@ -27,14 +27,14 @@ try {
               <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 article-title-block">
                     
-                      <h1 class="text-center"><?= $article["name"] ?></h1>
+                      <h1 class="text-center"><?= $article["title"] ?></h1>
                       <ul class="list-inline text-center">
                           <li>Author | <?= $article["username"] ?></li>
-                          <li>Date | <?php if (!isset($article["updatedAt"])) {
+                          <li>Date | <?php
         echo "Posted ". time_elapsed_string(utf8_encode($article["createdAt"]));
-    } else {
-        echo "Updated ". time_elapsed_string(utf8_encode($article["updatedAt"]));
-    } ?></li>
+     if (isset($article["updatedAt"])) {
+         echo "Updated ". time_elapsed_string(utf8_encode($article["updatedAt"]));
+     } ?></li>
                       </ul>
                   </div>
                   <div class="col">

@@ -11,9 +11,10 @@
 ?>
 
 <?php
+$postId = $_GET['id'];
 $query = "SELECT * FROM `articles` JOIN users ON users.id = articles.userId WHERE articles.id = :id";
 $q = $connect -> prepare($query);
-$q -> bindValue(':id', $_GET['id']);
+$q -> bindValue(':id', $postId);
 $q -> execute();
 $article = $q -> fetch();
 
@@ -49,6 +50,9 @@ $article = $q -> fetch();
               if (strlen($summary) > 255) {
                   $errors["summary"] = "Summary too long, (Max 255 chars)";
               }
+              if (strlen($description) > 5000) {
+                  $errors["description"] = "Description too long, (Max 5000 chars)";
+              }
               if (strlen($image) > 255) {
                   $errors["image"] = "Image URL too long, (Max 255 chars)";
               }
@@ -57,15 +61,16 @@ $article = $q -> fetch();
                   // $connect = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
                   // $connect -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                  $query = "UPDATE articles SET (title, summary, description, image) VALUES('$title', '$summary', '$description', '$image') WHERE articles.id = :id AND articles.userId = :userId";
+                  $query = "UPDATE articles SET title='$title', summary='$summary', description='$description', image='$image' WHERE articles.id = :id AND articles.userId = :userId";
                   $q = $connect -> prepare($query);
-                  $q -> bindValue(':id', $article['id']);
+                  $q -> bindValue(':id', $postId);
                   $q -> bindValue(':userId', $_SESSION['userId']);
-                  echo var_dump($q);
-                  if ($q -> execute()) {
+                  $execute = $q -> execute();
+
+                  if ($execute) {
                       ?>
                 <div class="alert alert-success" role="alert">
-                  The edits has been saved <a href='posts?id=<?= $article["id"] ?>'>click here</a> to view it
+                  The edits has been saved <a href='posts?id=<?= $postId ?>'>click here</a> to view it
                 </div>
               <?php
                   } else {
@@ -86,12 +91,12 @@ $article = $q -> fetch();
         <?php
               }
           } catch (PDOException $error) {
-              $error -> getMessage();
+              echo $error -> getMessage();
           }
       } ?>
 <h1 class="text-center">Edit Article - <?= $article["title"] ?></h1>
 
-  <form action='edit?id=<?= $article["id"] ?>' method="POST" autocomplete="off">
+  <form action='edit?id=<?= $postId ?>' method="POST" autocomplete="off">
     <div class="form-group">
       <label class="control-label" for="title">Title</label>
       <input type="text" value="<?php if (empty($_POST)) {

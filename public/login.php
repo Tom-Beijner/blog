@@ -12,7 +12,7 @@
 
 <h1 class="text-center">Login</h1>
 <?php
-  if (isset($_SESSION["username"])) {
+  if (isset($_SESSION["userId"])) {
       header("Location: index?loggedin=true");
   }
 
@@ -52,7 +52,7 @@
         <?php
           }
       } catch (PDOException $error) {
-          $error -> getMessage();
+          echo $error -> getMessage();
       }
   }
 ?>
