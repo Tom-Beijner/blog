@@ -1,14 +1,19 @@
-<?php  
+<?php
     // Parse the input value
-    function pure_input($data) {
+    function pure_input($data)
+    {
+        if (empty($data)) {
+            return "";
+        }
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
     }
 
-    // Calculate the amount of time that has passed and return a string 
-    function time_elapsed_string($datetime, $full = false) {
+    // Calculate the amount of time that has passed and return a string
+    function time_elapsed_string($datetime, $full = false)
+    {
         $now = new DateTime;
         $ago = new DateTime($datetime);
         $diff = $now->diff($ago);
@@ -33,7 +38,8 @@
             }
         }
 
-        if (!$full) $string = array_slice($string, 0, 1);
+        if (!$full) {
+            $string = array_slice($string, 0, 1);
+        }
         return $string ? implode(', ', $string) . ' ago' : 'just now';
     }
-?>
