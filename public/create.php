@@ -19,10 +19,10 @@
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
       try {
           $errors = array();
-          $title = pure_input($_POST["title"]);
-          $summary = pure_input($_POST["summary"]);
-          $description = pure_input($_POST["description"]);
-          $image = pure_input($_POST["image"]);
+          $title = !empty($_POST["title"]) ? pure_input($_POST["title"]) : null;
+          $summary = !empty($_POST["summary"]) ? pure_input($_POST["summary"]) : null;
+          $description = !empty($_POST["description"]) ? pure_input($_POST["description"]) : null;
+          $image = !empty($_POST["image"]) ? pure_input($_POST["image"]) : null;
 
           if (empty($title)) {
               $errors["title"] = "Title field can not be empty";
