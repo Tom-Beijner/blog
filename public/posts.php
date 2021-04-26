@@ -36,8 +36,8 @@ try {
          echo "Updated ". time_elapsed_string(utf8_encode($article["updatedAt"]));
      } ?></li>
      <?php if (isset($_SESSION["userId"]) && $_SESSION["userId"] == $article["userId"]) { ?><li>
-     <a class="btn btn-primary" role="button" href="<?= utf8_encode($base_url) ?>/edit?id=<?= $article["id"] ?>">Edit</a>
-     <a class="btn btn-danger" role="button" href="<?= utf8_encode($base_url) ?>/delete?id=<?= $article["id"] ?>">Delete</a>
+     <a class="btn btn-primary" role="button" href="<?= utf8_encode($base_url) ?>/edit?id=<?= $_GET['id'] ?>">Edit</a>
+     <a class="btn btn-danger" role="button" href="<?= utf8_encode($base_url) ?>/delete?id=<?= $_GET['id'] ?>">Delete</a>
      </li><?php } ?>
                       </ul>
                   </div>

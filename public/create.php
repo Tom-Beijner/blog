@@ -64,7 +64,7 @@
       
 
                     <div class="alert alert-success" role="alert">
-                      The article has been created <a href='<?php echo "posts?id={$post}" ?>'>click here</a> to view it
+                      The article has been created <a href='<?php echo "posts?id={$postId}" ?>'>click here</a> to view it
                     </div>
                   <?php
                   }
